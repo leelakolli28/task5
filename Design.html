@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Design</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Enroll your Design</h1>
+    </header>
+
+    <section id="book">
+        <h2>Enroll in Your Design</h2>
+
+        <form id="book-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="Design">Select Design:</label>
+            <select id="Design" name="Design" required>
+                <option value="Modern Interior Design">Modern Interior Design</option>
+                <option value="Contemporary Interior Design">Contemporary Interior Design</option>
+                <option value="Traditional Interior Design">Traditional Interior Design</option>
+                <option value="Minimalist Interior Design">Minimalist Interior Design</option>
+                <option value="Industrial Interior Design">Industrial Interior Design</option>
+                <option value="Scandinavian Interior Design">Scandinavian Interior Design</option>
+                <option value="Bohemian (Boho) Interior Design">Bohemian (Boho) Interior Design</option>
+                <option value="Rustic Interior Design">Rustic Interior Design</option>
+                <option value="Asian-Inspired Interior Design">Asian-Inspired Interior Design</option>
+            </select>
+
+            <label for="payment">Payment Method:</label>
+            <select id="payment" name="payment" required>
+                <option value="credit-card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+            </select>
+
+            <button type="submit">Complete your Booking</button>
+        </form>
+    </section>
+
+    <section id="alert-section" style="display: none;">
+        <div id="alert-message"></div>
+        <button id="alert-button" onclick="alertDismissed()">OK</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Interior Design. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Handle the form submission
+        document.getElementById('book-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Check if all required fields are filled
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const selectedDesign = document.getElementById('Design').value;
+            const paymentMethod = document.getElementById('payment').value;
+
+            if (!name || !email || !phone || !selectedDesign || !paymentMethod) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Prepare the message to show
+            const message = `Booking Successful!\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nDesign Selected: ${selectedDesign}\nPayment Method: ${paymentMethod}`;
+
+            // Display the message and the OK button
+            document.getElementById('alert-message').innerText = message;
+            document.getElementById('alert-section').style.display = 'block';
+        });
+
+        // Function to hide the alert after clicking OK
+        function alertDismissed() {
+            document.getElementById('alert-section').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
